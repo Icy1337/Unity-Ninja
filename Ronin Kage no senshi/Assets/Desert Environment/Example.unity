@@ -49893,6 +49893,8 @@ GameObject:
   - component: {fileID: 977081646}
   - component: {fileID: 977081645}
   - component: {fileID: 977081647}
+  - component: {fileID: 977081648}
+  - component: {fileID: 977081649}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -49948,6 +49950,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1019596298}
   moveSpeed: 100
+  rotateAroundPlayer: 1
+  rotationSpeed: 10
+--- !u!114 &977081648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977081644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d09de9d0d4a454497a2d7131ffa597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 15
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
+  frameCounter: 20
+--- !u!114 &977081649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977081644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395ef544ea0d74569a6383cfce1bcd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &982091502
 GameObject:
   m_ObjectHideFlags: 0
@@ -51845,13 +51881,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 6.7
+  m_Height: 6
   m_Radius: 2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 3, z: 0.7}
+  m_Center: {x: 0, y: 3.0799, z: 0.7}
 --- !u!114 &1019596301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51865,6 +51901,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1019749902
 GameObject:
   m_ObjectHideFlags: 0
@@ -81372,7 +81411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: fec746e46c2fd354fa0bc92720075dbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.02603
+      value: 12.02
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: fec746e46c2fd354fa0bc92720075dbd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -81380,7 +81419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: fec746e46c2fd354fa0bc92720075dbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2627821
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: fec746e46c2fd354fa0bc92720075dbd, type: 3}
       propertyPath: m_LocalRotation.x
