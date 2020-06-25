@@ -35,9 +35,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        movePlayer();
+    }
+
+    private void movePlayer()
+    {
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.SimpleMove(moveDirection * moveSpeed);
+
+        if (moveDirection != Vector3.zero)
+        {
+            GetComponentInChildren<Animator>().SetBool("isWalking", true);
+        }
+        else
+        {
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
+        }
     }
 }
