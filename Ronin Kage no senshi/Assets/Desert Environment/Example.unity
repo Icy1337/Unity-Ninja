@@ -49891,9 +49891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 977081646}
-  - component: {fileID: 977081645}
   - component: {fileID: 977081647}
-  - component: {fileID: 977081648}
   - component: {fileID: 977081649}
   m_Layer: 0
   m_Name: CameraHolder
@@ -49902,25 +49900,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &977081645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977081644}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee931deb318cba84cba907784f8b7f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveUnitsPerSecond:
-    value: {x: 0, y: 0, z: 0}
-    space: 1
-  rotateDegreesPerSecond:
-    value: {x: 0, y: 5, z: 0}
-    space: 1
-  ignoreTimescale: 1
 --- !u!4 &977081646
 Transform:
   m_ObjectHideFlags: 0
@@ -49948,30 +49927,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a28ac2c081d4b91bc1d78c384bf055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 1019596298}
-  moveSpeed: 100
-  rotateAroundPlayer: 1
-  rotationSpeed: 10
---- !u!114 &977081648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977081644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d09de9d0d4a454497a2d7131ffa597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 15
-  sensitivityY: 15
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
-  frameCounter: 20
+  target: {fileID: 1019596302}
+  offsetPosition: {x: 0, y: 1.2, z: 0}
+  offsetPositionSpace: 1
+  lookAt: 0
 --- !u!114 &977081649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51904,6 +51863,12 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!4 &1019596302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400044, guid: fec746e46c2fd354fa0bc92720075dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1466038875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019749902
 GameObject:
   m_ObjectHideFlags: 0

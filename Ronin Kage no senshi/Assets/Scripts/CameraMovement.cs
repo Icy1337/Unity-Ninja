@@ -5,36 +5,49 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
 
-    public GameObject followTarget;
-    private Vector3 _cameraOffset;
-    public float moveSpeed;
-    public bool rotateAroundPlayer;
-    public float rotationSpeed = 10.0f;
+    [SerializeField]
+    private Transform target;
 
-    void Start()
+    [SerializeField]
+    private Vector3 offsetPosition;
+
+    [SerializeField]
+    private Space offsetPositionSpace = Space.Self;
+
+    [SerializeField]
+    private bool lookAt = true;
+
+    private void LateUpdate()
     {
-        _cameraOffset = transform.position - followTarget.transform.position;    
+        Refresh();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Refresh()
     {
-        if (followTarget != null)
+        if (target == null)
         {
+            Debug.LogWarning("Missing target ref !", this);
+            return;
+        }
 
-            if (rotateAroundPlayer)
-            {
-                Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);
-                _cameraOffset = camTurnAngle * _cameraOffset;
-            }
+        // compute position
+        if (offsetPositionSpace == Space.Self)
+        {
+            transform.position = target.TransformPoint(offsetPosition);
+        }
+        else
+        {
+            transform.position = target.position + offsetPosition;
+        }
 
-            Vector3 newPos = followTarget.transform.position + _cameraOffset;
-            transform.position = Vector3.Slerp(transform.position, newPos, Time.deltaTime * moveSpeed);
-
-            if (rotateAroundPlayer)
-            {
-                transform.LookAt(followTarget.transform);
-            }
+        // compute rotation
+        if (lookAt)
+        {
+            transform.LookAt(target);
+        }
+        else
+        {
+            transform.rotation = target.rotation;
         }
     }
 }
