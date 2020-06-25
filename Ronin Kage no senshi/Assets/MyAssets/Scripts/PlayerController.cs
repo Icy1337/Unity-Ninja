@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     public LayerMask layerMask;
     private Vector3 currentLookTarget = Vector3.zero;
+    public Joystick leftJoystick;
+    public Joystick rightJoystick;
 
     // Use this for initialization
     void Start()
@@ -17,19 +19,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, 1000, layerMask, QueryTriggerInteraction.Ignore))
-        {
-            if (hit.point != currentLookTarget)
-            {
-                currentLookTarget = hit.point;
-                Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 2.0f);
-            }
-        }
+        rotatePlayer();
     }
 
     // Update is called once per frame
@@ -40,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void movePlayer()
     {
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 moveDirection = new Vector3(leftJoystick.Horizontal, 0, leftJoystick.Vertical);
 
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.SimpleMove(moveDirection * moveSpeed);
@@ -53,5 +43,13 @@ public class PlayerController : MonoBehaviour
         {
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
+    }
+
+    private void rotatePlayer()
+    {
+        Vector3 targetPosition = new Vector3(rightJoystick.Horizontal, 0, rightJoystick.Vertical);
+        Quaternion rotation = Quaternion.LookRotation(targetPosition);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 60 * Time.deltaTime);
     }
 }
