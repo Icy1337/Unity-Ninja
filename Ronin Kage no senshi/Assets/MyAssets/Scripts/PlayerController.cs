@@ -30,7 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private void movePlayer()
     {
-        Vector3 moveDirection = new Vector3(leftJoystick.Horizontal, 0, leftJoystick.Vertical);
+
+        float horizontal = (Input.GetAxis("Horizontal") + leftJoystick.Horizontal);
+        float vertical = (Input.GetAxis("Vertical") + leftJoystick.Vertical);
+
+        Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
 
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.SimpleMove(moveDirection * moveSpeed);
@@ -47,7 +51,11 @@ public class PlayerController : MonoBehaviour
 
     private void rotatePlayer()
     {
-        Vector3 targetPosition = new Vector3(rightJoystick.Horizontal, 0, rightJoystick.Vertical);
+        float horizontal = (Input.mousePosition.x + rightJoystick.Horizontal);
+        float vertical = (Input.mousePosition.x + rightJoystick.Vertical) * -1;
+
+        Vector3 targetPosition = new Vector3(horizontal, 0, vertical);
+
         Quaternion rotation = Quaternion.LookRotation(targetPosition);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 60 * Time.deltaTime);
